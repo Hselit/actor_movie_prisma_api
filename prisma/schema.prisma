@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Actor{
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(255)
+  age          Int  
+  totalMovies  Int     @default(0)
+  movies       MovieActor[]
+}
+
+model Movie{
+  id            Int          @id @default(autoincrement())
+  movieName     String  
+  dateOfRelease DateTime
+  rating        Float?
+  actors        MovieActor[]
+}
+
+model MovieActor{
+  movieId  Int
+  actorId  Int
+  movie    Movie @relation(fields: [movieId],references: [id],onDelete: Cascade)
+  actor    Actor @relation(fields: [actorId],references: [id],onDelete: Cascade)
+
+  @@id([movieId,actorId])
+}
