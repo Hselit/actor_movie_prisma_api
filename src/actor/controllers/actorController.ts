@@ -24,6 +24,7 @@ export const getSingleActor = async (req: Request, res: Response): Promise<void>
     const actordata: GetSingleActorResponse = await ActorService.getActor(id);
     if (!actordata) {
       res.status(404).json({ message: "No Actor Found with this Id" });
+      return;
     }
     res.status(200).json(actordata);
   } catch (error) {

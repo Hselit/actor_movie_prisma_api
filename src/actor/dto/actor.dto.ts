@@ -5,6 +5,8 @@ export type Actor = {
   totalMovies: number;
 };
 
+export type ActorResponse = Partial<Actor>;
+
 export type ActorId = number;
 
 export type GetActorResponse = Actor[] | { message: string };

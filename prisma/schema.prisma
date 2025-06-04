@@ -26,7 +26,7 @@ model Movie{
   id            Int          @id @default(autoincrement())
   movieName     String  
   dateOfRelease DateTime
-  rating        Float?
+  rating        Float        @default(0)
   actors        MovieActor[]
 }
 
