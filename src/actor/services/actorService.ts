@@ -2,6 +2,7 @@ import prisma from "../../utils/prisma";
 import { Actor, ActorId, UpdateActorRequest } from "../dto/actor.dto";
 
 export default class ActorService {
+  // Get All Actor
   static async getActorList() {
     try {
       const list: Actor[] = await prisma.actor.findMany();
@@ -13,6 +14,7 @@ export default class ActorService {
     }
   }
 
+  // Get SIngle Actor
   static async getActor(id: ActorId) {
     try {
       return await prisma.actor.findUnique({ where: { id } });
@@ -22,6 +24,7 @@ export default class ActorService {
     }
   }
 
+  // Update Actor
   static async updateActor(id: ActorId, updatedata: UpdateActorRequest) {
     try {
       return await prisma.actor.update({ data: updatedata, where: { id: id } });
@@ -31,6 +34,7 @@ export default class ActorService {
     }
   }
 
+  // Delete Actor
   static async deleteActor(actorid: ActorId) {
     try {
       return await prisma.actor.delete({ where: { id: actorid } });
@@ -40,6 +44,7 @@ export default class ActorService {
     }
   }
 
+  // Add Actor
   static async createActor(actordata: Actor) {
     try {
       return await prisma.actor.create({ data: actordata });

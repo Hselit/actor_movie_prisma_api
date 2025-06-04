@@ -8,6 +8,7 @@ import {
 import { Request, Response } from "express";
 import ActorService from "../services/actorService";
 
+// Get Actor List
 export const getActorList = async (req: Request, res: Response): Promise<void> => {
   try {
     const actorlist: GetActorResponse = await ActorService.getActorList();
@@ -18,6 +19,7 @@ export const getActorList = async (req: Request, res: Response): Promise<void> =
   }
 };
 
+// Get Single Actor By Id
 export const getSingleActor = async (req: Request, res: Response): Promise<void> => {
   try {
     const id: ActorId = Number(req.params.id);
@@ -33,6 +35,7 @@ export const getSingleActor = async (req: Request, res: Response): Promise<void>
   }
 };
 
+// Update Actor
 export const updateActor = async (req: Request, res: Response): Promise<void> => {
   try {
     const id: ActorId = parseInt(req.params.id);
@@ -54,6 +57,7 @@ export const updateActor = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
+// Delete Actor By Id
 export const deleteActor = async (req: Request, res: Response) => {
   try {
     const actorId: ActorId = parseInt(req.params.id);
@@ -75,6 +79,7 @@ export const deleteActor = async (req: Request, res: Response) => {
   }
 };
 
+// Create New Actor
 export const AddActor = async (req: Request, res: Response) => {
   try {
     const actordata: Actor = req.body;

@@ -130,6 +130,7 @@ export const updateMovieActor = async (req: Request, res: Response) => {
   }
 };
 
+// update(link) movie and Actor
 export const linkActorMovie = async (req: Request, res: Response) => {
   try {
     const paramsMovieId: MovieId = parseInt(req.params.movieid);
