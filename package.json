@@ -8,18 +8,23 @@
   "scripts": {
     "compile": "npx tsc",
     "run": "node ./dest/bin/www.js",
-    "wcrun": "npx tsx ./src/bin/www.ts"
+    "wcrun": "npx tsx ./src/bin/www.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "@types/debug": "^4.1.12",
     "@types/express": "^5.0.2",
+    "@types/jest": "^29.5.14",
     "@types/morgan": "^1.9.9",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0-beta1",
     "morgan": "~1.9.1",
     "prisma": "^6.8.2",
+    "ts-jest": "^29.3.4",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },

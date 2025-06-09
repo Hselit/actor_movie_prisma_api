@@ -5,6 +5,8 @@ export type Actor = {
   totalMovies: number;
 };
 
+export type SingleActorResponse = Required<Actor>;
+
 export type ActorResponse = Partial<Actor>;
 
 export type ActorId = number;
