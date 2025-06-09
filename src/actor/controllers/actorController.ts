@@ -15,7 +15,7 @@ export const getActorList = async (req: Request, res: Response): Promise<void> =
     res.status(200).json(actorlist);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Error Occured" } as GetActorResponse);
+    res.status(500).json({ message: "Error Occured" });
   }
 };
 

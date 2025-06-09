@@ -1,5 +1,5 @@
 import prisma from "../../utils/prisma";
-import { Actor, ActorId, UpdateActorRequest } from "../dto/actor.dto";
+import { Actor, ActorId, CreateActorRequest, UpdateActorRequest } from "../dto/actor.dto";
 
 export default class ActorService {
   // Get All Actor
@@ -45,7 +45,7 @@ export default class ActorService {
   }
 
   // Add Actor
-  static async createActor(actordata: Actor) {
+  static async createActor(actordata: CreateActorRequest) {
     try {
       return await prisma.actor.create({ data: actordata });
     } catch (error) {

@@ -1,9 +1,11 @@
 export type Actor = {
-  id?: number;
+  id: number;
   name: string;
   age: number;
   totalMovies: number;
 };
+
+export type CreateActorRequest = Omit<Actor, "id">;
 
 export type SingleActorResponse = Required<Actor>;
 
@@ -11,7 +13,7 @@ export type ActorResponse = Partial<Actor>;
 
 export type ActorId = number;
 
-export type GetActorResponse = Actor[] | { message: string };
+export type GetActorResponse = Actor[];
 
 export type GetSingleActorResponse = Actor | { message: string } | null;
 
