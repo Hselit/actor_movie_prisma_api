@@ -8,22 +8,25 @@ jest.mock("../../src/utils/prisma", () => ({
 }));
 
 describe("Actor Service", () => {
-  it("Add New Actor", async () => {
-    const inputdata: Actor = {
-      id: 13,
-      name: "Scarlett Johansson",
-      age: 40,
-      totalMovies: 70,
-    };
-    const data = {
-      name: "Scarlett Johansson",
-      age: 40,
-      totalMovies: 70,
-    };
-    mockPrisma.actor.create.mockResolvedValue(inputdata);
-    const resultdata = await ActorService.createActor(data);
-    expect(inputdata).toEqual(resultdata);
-    expect(mockPrisma.actor.create).toHaveBeenCalledWith({ data: data });
+  describe("Add Actor", () => {
+    it("Add New Actor", async () => {
+      const returndata: Actor = {
+        id: 1,
+        name: "Scarlett Johansson",
+        age: 40,
+        totalMovies: 70,
+      };
+      const data = {
+        name: "Scarlett Johansson",
+        age: 40,
+        totalMovies: 70,
+      };
+      mockPrisma.actor.create.mockResolvedValue(returndata);
+      const resultdata = await ActorService.createActor(data);
+      console.log(resultdata);
+      expect(resultdata).toEqual(returndata);
+      expect(mockPrisma.actor.create).toHaveBeenCalledWith({ data: data });
+    });
   });
 
   it("return of actor details", async () => {

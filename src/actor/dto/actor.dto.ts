@@ -5,6 +5,8 @@ export type Actor = {
   totalMovies: number;
 };
 
+export type methodType = "body" | "params" | "query";
+
 export type CreateActorRequest = Omit<Actor, "id">;
 
 export type SingleActorResponse = Required<Actor>;
