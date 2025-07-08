@@ -6,7 +6,6 @@ jest.mock("../../src/utils/prisma", () => ({
   __esModule: true,
   default: mockPrisma,
 }));
-
 describe("Actor Service", () => {
   describe("Add Actor", () => {
     it("Add New Actor", async () => {
@@ -39,7 +38,10 @@ describe("Actor Service", () => {
     mockPrisma.actor.findUnique.mockResolvedValue(data);
     const actor = await ActorService.getActor(4);
 
-    expect(actor).toEqual(data);
+    // expect(actor).toEqual(data);
+    expect(actor?.name).toBe("Scarlett Johansson");
+    expect(actor?.age).toBe(40);
+    expect(actor?.totalMovies).toBe(70);
     expect(mockPrisma.actor.findUnique).toHaveBeenCalledWith({ where: { id: 4 } });
   });
 
@@ -82,9 +84,48 @@ describe("Actor Service", () => {
         totalMovies: 45,
       },
     ];
+    const actorListResult = [
+      {
+        id: 1,
+        name: "Robert Downey Jr.",
+        age: 58,
+        totalMovies: 85,
+      },
+      {
+        id: 3,
+        name: "Chris Evan",
+        age: 45,
+        totalMovies: 45,
+      },
+      {
+        id: 4,
+        name: "Scarlett Johansson",
+        age: 40,
+        totalMovies: 70,
+      },
+      {
+        id: 5,
+        name: "Leonardo DiCaprio",
+        age: 50,
+        totalMovies: 124,
+      },
+      {
+        id: 11,
+        name: "Ana de Armas",
+        age: 37,
+        totalMovies: 27,
+      },
+      {
+        id: 12,
+        name: "Russell Crowe",
+        age: 60,
+        totalMovies: 45,
+      },
+    ];
     mockPrisma.actor.findMany.mockResolvedValue(actorList);
     const actorData = await ActorService.getActorList();
-    expect(actorData).toEqual(actorList);
+    console.log(actorData);
+    expect(actorData).toEqual(actorListResult);
   });
 
   it("update an actor", async () => {

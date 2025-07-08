@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `movie` MODIFY `rating` DOUBLE NOT NULL DEFAULT 0;

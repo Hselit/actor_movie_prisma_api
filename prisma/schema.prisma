@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,27 +13,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Actor{
-  id           Int     @id @default(autoincrement())
-  name         String  @db.VarChar(255)
-  age          Int  
-  totalMovies  Int     @default(0)
-  movies       MovieActor[]
+model Actor {
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar(255)
+  age         Int
+  totalMovies Int          @default(0)
+  movies      MovieActor[]
 }
 
-model Movie{
+model Movie {
   id            Int          @id @default(autoincrement())
-  movieName     String  
+  movieName     String
   dateOfRelease DateTime
   rating        Float        @default(0)
   actors        MovieActor[]
 }
 
-model MovieActor{
-  movieId  Int
-  actorId  Int
-  movie    Movie @relation(fields: [movieId],references: [id],onDelete: Cascade)
-  actor    Actor @relation(fields: [actorId],references: [id],onDelete: Cascade)
+model MovieActor {
+  movieId Int
+  actorId Int
+  movie   Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  actor   Actor @relation(fields: [actorId], references: [id], onDelete: Cascade)
 
-  @@id([movieId,actorId])
+  @@id([movieId, actorId])
 }
