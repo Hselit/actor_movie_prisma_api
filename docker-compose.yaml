@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   app:
     build: .
@@ -10,5 +11,20 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: ${DATABASE_URL}
-    command: npx tsx ./src/bin/www.ts
+      DATABASE_URL: mysql://root:root@db:3306/prisma
+    command: sh -c "npx prisma migrate deploy && npx tsx src/bin/www.ts"
+
+  db:
+    image: mysql:8
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prisma
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
