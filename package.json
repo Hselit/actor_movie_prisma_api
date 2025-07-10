@@ -10,7 +10,8 @@
     "run": "node ./dest/bin/www.js",
     "wcrun": "npx tsx ./src/bin/www.ts",
     "test": "jest",
-    "docker:test": "jest"
+    "docker:test": "jest",
+    "seeder": "tsx ./prisma/seed/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",

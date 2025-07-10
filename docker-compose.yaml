@@ -9,17 +9,17 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      - database
     environment:
-      DATABASE_URL: mysql://root:root@db:3306/prisma
-    command: sh -c "npx prisma migrate deploy && npx tsx src/bin/www.ts"
+      DATABASE_URL: mysql://root:${DB_PASS}@database:3306/prisma
+    command: sh -c "npx prisma generate && npx prisma migrate deploy && npm run seeder && npx tsx src/bin/www.ts"
 
-  db:
+  database:
     image: mysql:8
-    container_name: db
+    container_name: database
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
       MYSQL_DATABASE: prisma
     ports:
       - "3306:3306"
